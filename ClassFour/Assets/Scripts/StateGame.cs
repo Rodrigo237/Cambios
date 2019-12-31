@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StateGame : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class StateGame : MonoBehaviour
     {
         if (lifes > 0)
             lifes -= 1;
+        else if (lifes == 0)
+        {
+            SceneManager.LoadScene(0);
+            lifes = 5;
+        }
     }
 
     public void EnemyCounter()

@@ -15,6 +15,7 @@ public class FirstPersonController : MonoBehaviour
     public Camera cameraTransform;
     public float playerlife = 5;
     public GameObject Screen;
+    public GameObject Crosshair;
     private StateGame state = new StateGame();
     float angleX;
     float InputY;
@@ -53,6 +54,7 @@ public class FirstPersonController : MonoBehaviour
             Destroy(collision.gameObject);
             gun.SetActive(true);
             shooter.isActive = true;
+            Crosshair.SetActive(true);
         }
 
         if (collision.gameObject.tag == "Ground") {

@@ -7,14 +7,19 @@ public class EnemyController : MonoBehaviour
     private Animator enemyAnimator;
     private NavMeshAgent enemyAgent;
     private Transform playerTransform;
-    public float countlife = 5f;
+    public float countlife;
     public bool life = true;
-
+    private StateGame stateGame = new StateGame();
+    private GameObject Healthbar;
+    LifeBar lifeBar;
     void Start()
     {
         enemyAnimator = GetComponent<Animator>();
         enemyAgent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        Healthbar = GameObject.FindGameObjectWithTag("Lifebar");
+        this.lifeBar.SetHealth(this.countlife);
+        this.lifeBar.UpdateHealth(this.countlife);
     }
 
     // Update is called once per frame
@@ -23,6 +28,7 @@ public class EnemyController : MonoBehaviour
         enemyAgent.SetDestination(playerTransform.position);
         Debug.Log("Distance to player: " + enemyAgent.remainingDistance);
         enemyAnimator.SetFloat("Speed",enemyAgent.speed);
+        enemyAnimator.SetBool("Vidas", true);
 
         if (enemyAgent.remainingDistance <= 1f && enemyAgent.hasPath)
         {
@@ -32,20 +38,25 @@ public class EnemyController : MonoBehaviour
 
         else
             enemyAnimator.SetFloat("Speed", enemyAgent.speed);
-
-
+        
     }
 
      void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bullet") {
-            countlife = countlife - 1;   
+            countlife -= 1;
+            this.Damage(1f);          
         }
-        if(countlife == 0)
+    }
+
+    public void Damage(float damage)
+    {
+        this.countlife -= damage;
+        if (countlife <= 0f)
         {
-            life = false;
-            enemyAnimator.SetBool("Vidas", life);
             Destroy(this.gameObject);
+            stateGame.EnemyCounter();
         }
+        this.lifeBar.UpdateHealth(this.countlife);
     }
 }

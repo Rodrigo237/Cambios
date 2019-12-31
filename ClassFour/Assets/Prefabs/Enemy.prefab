@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 80466977}
   m_Layer: 5
   m_Name: LifeBarCanvas
-  m_TagString: Untagged
+  m_TagString: Lifebar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   fullLife: {r: 0.31689718, g: 0.6981132, b: 0.13501245, a: 1}
   emptyLife: {r: 0.7169812, g: 0.1318975, b: 0.1318975, a: 1}
   animDuration: 5
+  damage: 0
 --- !u!1 &4035866510815207552
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countlife: 5
-  life: 1
+  life: 0
 --- !u!1 &4035866510815207554
 GameObject:
   m_ObjectHideFlags: 0
