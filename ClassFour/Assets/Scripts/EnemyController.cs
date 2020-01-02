@@ -7,7 +7,8 @@ public class EnemyController : MonoBehaviour
     private Animator enemyAnimator;
     private NavMeshAgent enemyAgent;
     private Transform playerTransform;
-    public float countlife;
+    public float lifeEnemy;
+    public float currentHealth;
     public bool life = true;
     private StateGame stateGame = new StateGame();
     private GameObject Healthbar;
@@ -18,8 +19,7 @@ public class EnemyController : MonoBehaviour
         enemyAgent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         Healthbar = GameObject.FindGameObjectWithTag("Lifebar");
-        this.lifeBar.SetHealth(this.countlife);
-        this.lifeBar.UpdateHealth(this.countlife);
+       
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
         enemyAgent.SetDestination(playerTransform.position);
         Debug.Log("Distance to player: " + enemyAgent.remainingDistance);
         enemyAnimator.SetFloat("Speed",enemyAgent.speed);
-        enemyAnimator.SetBool("Vidas", true);
+        
 
         if (enemyAgent.remainingDistance <= 1f && enemyAgent.hasPath)
         {
@@ -38,25 +38,28 @@ public class EnemyController : MonoBehaviour
 
         else
             enemyAnimator.SetFloat("Speed", enemyAgent.speed);
-        
+
+
+        if (lifeEnemy != 0)
+        {
+            enemyAnimator.SetBool("Vidas", false);
+            Destroy(transform.parent.gameObject);
+            stateGame.EnemyCounter();
+        }
+        else
+            enemyAnimator.SetBool("Vidas", true);
     }
 
      void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bullet") {
-            countlife -= 1;
-            this.Damage(1f);          
+            this.Damage(1f);        
         }
     }
 
     public void Damage(float damage)
     {
-        this.countlife -= damage;
-        if (countlife <= 0f)
-        {
-            Destroy(this.gameObject);
-            stateGame.EnemyCounter();
-        }
-        this.lifeBar.UpdateHealth(this.countlife);
+        if(currentHealth>0)
+            currentHealth -= damage;       
     }
 }

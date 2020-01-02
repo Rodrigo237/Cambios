@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         decaltemp.transform.parent = collision.transform;
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyController>().countlife -= 1;
+            collision.gameObject.GetComponent<EnemyController>().lifeEnemy -= 1;
         }
         Destroy(this.gameObject);
     }

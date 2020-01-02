@@ -189,7 +189,6 @@ MonoBehaviour:
   fullLife: {r: 0.31689718, g: 0.6981132, b: 0.13501245, a: 1}
   emptyLife: {r: 0.7169812, g: 0.1318975, b: 0.1318975, a: 1}
   animDuration: 5
-  damage: 0
 --- !u!1 &4035866510815207552
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9bfccc21f846740bf592722c39e160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countlife: 5
+  lifeEnemy: 3
+  currentHealth: 0
   life: 0
 --- !u!1 &4035866510815207554
 GameObject:
