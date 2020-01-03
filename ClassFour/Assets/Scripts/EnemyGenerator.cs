@@ -13,7 +13,7 @@ public class EnemyGenerator : MonoBehaviour
     }
 
     void spawnEnemy() {
-        Instantiate(enemyPrefab, spawnPoints[Random.Range(0,5)], Quaternion.identity); 
+        Instantiate(enemyPrefab, spawnPoints[Random.Range(0,spawnPoints.Length)], Quaternion.identity); 
         Debug.Log("Position"+ enemyPrefab.transform.position);
     }
 }

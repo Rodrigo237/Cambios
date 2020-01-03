@@ -32,14 +32,14 @@ public class Shooter : MonoBehaviour
         }
 
 
-        if (isMoving)
-        {
-            currentSize = Mathf.Lerp(currentSize, dynamicSize, speedCamera * Time.deltaTime);
-        }
-        else {
-            currentSize = Mathf.Lerp(currentSize, minimunSize, speedCamera * Time.deltaTime);
-        }
-        rectTransform.sizeDelta = new Vector2(currentSize, currentSize);
+  //      if (isMoving)
+    //    {
+         //   currentSize = Mathf.Lerp(currentSize, dynamicSize, speedCamera * Time.deltaTime);
+      //  }
+       // else {
+        //    currentSize = Mathf.Lerp(currentSize, minimunSize, speedCamera * Time.deltaTime);
+       // }
+    //    rectTransform.sizeDelta = new Vector2(currentSize, currentSize);
     }
 
 
